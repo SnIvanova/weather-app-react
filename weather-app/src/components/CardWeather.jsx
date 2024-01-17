@@ -140,7 +140,8 @@ const CardWeather = () => {
                     }
                   })()}
                 </div>
-                <Card.Body className="border-bottom border-white w-75 text-center text-white fw-bold">
+                <Col xs={12} className="d-flex flex-wrap">
+                <Card.Body className=" border-bottom border-white w-75 text-center text-white fw-bold">
                   <Card.Text>{weather.condition}</Card.Text>
                 </Card.Body>
                 <Card.Body className="w-75 text-center text-white">
@@ -157,6 +158,7 @@ const CardWeather = () => {
                     </Col>
                   </Row>
                 </Card.Body>
+                </Col>
               </Card>
             </Col>
           </Row>
@@ -170,11 +172,11 @@ const CardWeather = () => {
           <ForecastWeather city={location.search} />
         </Col>
 
-        <Col xs={12} md={4} className="d-flex justify-content-center align-items-center p-2 mt-4" style={{ border: "1px solid #fd7486", borderRadius: "20px" }}>
-          <WeatherDetail icon={<Water className="fs-5 fw-bold" style={{ color: "#fd7486" }} />} label="Humidity" value={`${weather.humidity}%`} />
-          <WeatherDetail icon={<Wind className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Wind" value={`${Math.trunc(weather.wind)} km/h`} />
-          <WeatherDetail icon={<WiSunrise className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Sunrise" value={`${hour1}:${min1}`} />
-          <WeatherDetail icon={<WiSunset className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Sunset" value={`${hour}:${min}`} />
+        <Col xs={12} md={4} className="d-flex justify-content-center align-items-center p-2 mt-4 border rounded-2 border-primary">
+          <WeatherDetail icon={<Water className="fs-5 fw-bold text-primary" />} label="Humidity" value={`${weather.humidity}%`} />
+          <WeatherDetail icon={<Wind className="fs-3 fw-bold text-primary" />} label="Wind" value={`${Math.trunc(weather.wind)} km/h`} />
+          <WeatherDetail icon={<WiSunrise className="fs-3 fw-bold text-primary" />} label="Sunrise" value={`${hour1}:${min1}`} />
+          <WeatherDetail icon={<WiSunset className="fs-3 fw-bold text-primary" />} label="Sunset" value={`${hour}:${min}`} />
         </Col>
       </Row>
     </Container>

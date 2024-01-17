@@ -1,10 +1,13 @@
+import React from "react";
 
-const WeatherDetail = ({ icon, label, value }) => (
-<div className="d-flex">
-  {icon}
-  <p className="d-flex flex-column ms-3">
-    {label}
-    <span className="fw-bold">{value}</span>
-  </p>
-</div>
-); export default WeatherDetail;
+const WeatherDetail = ({ icon, label, value }) => {
+  return (
+    <div className="d-flex flex-column mx-3">
+      {icon}
+      <p className="text-muted mb-1">{label}</p>
+      <span className="fw-bold">{value}</span>
+    </div>
+  );
+};
+
+export default WeatherDetail;
