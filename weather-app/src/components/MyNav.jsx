@@ -1,48 +1,47 @@
-import { Container, Nav, Navbar, Row } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import SearchLocation from "./SearchLocation"
-import { ThreeDotsVertical } from "react-bootstrap-icons"
-import logo from "../assets/img/logo.png"
+import React from "react";
+import { Container, Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ThreeDotsVertical } from "react-bootstrap-icons";
+import logo from "../assets/img/logo.png";
+import SearchLocation from "./SearchLocation";
 
 const MyNav = () => {
   const refreshPage = () => {
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   return (
     <Container fluid>
-      <Row>
-        <Navbar expand="lg" className="mt-3 p-0">
-          <Link
-            to={"/"}
-            className="text-decoration-none"
-            onClick={() => refreshPage()}
-          >
-            <div className="navbar-brand ms-4" style={{ color: "#fd7486" }}>
-              <img src={logo} alt="" style={{ width: "55px" }} />
-            </div>
-          </Link>
-          <SearchLocation />
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            className="border-0 bg-white m-0 p-0 me-2"
-            style={{ width: "30px" }}
-          >
-            <ThreeDotsVertical color="#fd7486" />
-          </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto" style={{ marginLeft: "20em" }}>
-              <Link to={"/"} className="nav-link" onClick={() => refreshPage()}>
-                <p>Home</p>
-              </Link>
-              <Nav.Link href="#link">Latest search</Nav.Link>
-              <Nav.Link href="#link">Map</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </Row>
-    </Container>
-  )
-}
+      <Navbar expand="lg" className="bg-light p-3">
+        <Link to="/" className="text-decoration-none">
+          <Navbar.Brand className="ms-4" style={{ color: "#fd7486" }}>
+            <img src={logo} alt="" style={{ width: "55px" }} />
+          </Navbar.Brand>
+        </Link>
 
-export default MyNav
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 bg-white me-2">
+          <ThreeDotsVertical color="#fd7486" />
+        </Navbar.Toggle>
+
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Link to="/" className="nav-link" onClick={refreshPage}>
+              Home
+            </Link>
+            <Link to="/latest-search" className="nav-link">
+              Latest Search
+            </Link>
+            <Link to="/map" className="nav-link">
+              Map
+            </Link>
+          </Nav>
+
+          {/* Include the SearchLocation component */}
+          <SearchLocation />
+        </Navbar.Collapse>
+      </Navbar>
+    </Container>
+  );
+};
+
+export default MyNav;

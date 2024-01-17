@@ -47,7 +47,7 @@ const SearchLocation = () => {
         className="d-flex justify-content-center align-items center"
         style={{ width: "250px" }}
       >
-        <Form className="d-flex flex-column">
+        <Form className="d-flex flex-column flex-lg-row align-items-center">
           <InputGroup className="d-flex flex-row">
             <FormControl
               type="text"
