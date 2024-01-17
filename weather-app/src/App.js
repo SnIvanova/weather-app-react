@@ -11,7 +11,6 @@ import PageNotFound from './components/NotFound';
 const Header = ({ scrolled }) => (
   <header className={`${scrolled > 100 ? 'scrolled' : undefined}`}>
     <MyNav />
-    <p className="text-black-50 header-text d-flex mx-4">Search here your favourite city!</p>
   </header>
 );
 

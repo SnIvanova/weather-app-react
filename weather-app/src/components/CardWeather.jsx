@@ -143,7 +143,7 @@ const CardWeather = () => {
                   .includes("rain".toLowerCase()) ? (
                 <img
                   src={rain}
-                  alt=""
+                  alt="rain"
                   className="bgImg rounded-5"
                   style={{ zIndex: "-100" }}
                 />
