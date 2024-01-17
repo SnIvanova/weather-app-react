@@ -7,10 +7,10 @@ import {
   WiFog,
   WiRain,
   WiSnow,
-  WiThunderstorm,
+  WiThunderstorm
 } from "weather-icons-react"
 
-import "./cardWeather.css"
+import "../assets/css/cardWeather.css"
 import { format, parseISO } from "date-fns"
 
 const ForecastWeather = ({ city }) => {

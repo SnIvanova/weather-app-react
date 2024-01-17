@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Alert, Card, Col, Container, Row, Spinner } from "react-bootstrap"
-import "./cardWeather.css"
+
 import {
   WiCloud,
   WiDayHaze,
@@ -11,7 +11,7 @@ import {
   WiThermometer,
   WiThunderstorm,
 } from "weather-icons-react"
-import "./cardWeather.css"
+import "../assets/css/cardWeather.css"
 
 import rain from "../assets/bg-img/rain.jpeg"
 import fog from "../assets/bg-img/fog.jpeg"

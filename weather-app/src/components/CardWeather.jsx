@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react"
 import { Alert, Card, Col, Container, Row, Spinner } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
-import "./cardWeather.css"
-import {
-  WiCloud,
-  WiDayHaze,
-  WiDaySunny,
-  WiFog,
-  WiRain,
-  WiSnow,
-  WiSunrise,
-  WiSunset,
-  WiThermometer,
-  WiThunderstorm,
-} from "weather-icons-react"
+
+import {WiCloud, WiDayHaze, WiDaySunny, WiFog, WiRain, WiSnow, WiSunrise, WiSunset, WiThermometer, WiThunderstorm } from "weather-icons-react"
+
+import WeatherDetail  from "../components/WeatherDetail"
 
 import rain from "../assets/bg-img/rain.jpeg"
 import fog from "../assets/bg-img/fog.jpeg"
@@ -21,6 +12,7 @@ import clear from "../assets/bg-img/clear.jpeg"
 import cloud from "../assets/bg-img/cloud.jpeg"
 import thunderstorm from "../assets/bg-img/thunderstorm.jpeg"
 import snow from "../assets/bg-img/snow.jpeg"
+import "../assets/css/cardWeather.css"
 import ForecastWeather from "./ForecastWeather"
 import { Water, Wind } from "react-bootstrap-icons"
 
@@ -112,232 +104,80 @@ const CardWeather = () => {
         </Alert>
       )}
       <Container fluid className="mt-5">
-        <Row className="d-flex justify-content-center flex-column align-items-center">
-          <Col xs={12}>
-            <Card
-              className="d-flex justify-content-center align-items-center p-3 border-white rounded-2"
-              style={{ zIndex: "100" }}
-            >
-              {weather.condition
-                .toLowerCase()
-                .includes("snow".toLowerCase()) ? (
+          <Row className="justify-content-center">
+            <Col xs={12}>
+              <Card className="text-center p-3 border-white rounded-2" style={{ zIndex: "100" }}>
                 <img
-                  src={snow}
+                  src={
+                    weather.condition.toLowerCase().includes("snow") ? snow :
+                    weather.condition.toLowerCase().includes("fog") ? fog :
+                    weather.condition.toLowerCase().includes("rain") ? rain :
+                    weather.condition.toLowerCase().includes("thunderstorm") ? thunderstorm :
+                    weather.condition.toLowerCase().includes("clear") ? clear :
+                    weather.condition.toLowerCase().includes("cloud") ? cloud :
+                    weather.condition.toLowerCase().includes("haze") ? fog : ""
+                  }
                   alt=""
                   className="bgImg rounded-5"
                   style={{ zIndex: "-100" }}
                 />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("fog".toLowerCase()) ? (
-                <img
-                  src={fog}
-                  alt=""
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("rain".toLowerCase()) ? (
-                <img
-                  src={rain}
-                  alt="rain"
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("thunderstorm".toLowerCase()) ? (
-                <img
-                  src={thunderstorm}
-                  alt=""
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("clear".toLowerCase()) ? (
-                <img
-                  src={clear}
-                  alt=""
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("cloud".toLowerCase()) ? (
-                <img
-                  src={cloud}
-                  alt=""
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("haze".toLowerCase()) ? (
-                <img
-                  src={fog}
-                  alt=""
-                  className="bgImg rounded-5"
-                  style={{ zIndex: "-100" }}
-                />
-              ) : (
-                ""
-              )}
-              <h3 className="fw-bold text-white">{weather.city}</h3>
-              <p>
-                <em className="text-black-50">{`${day} | ${month} | ${year}`}</em>
-              </p>
-              <h1 className="fw-bold text-white" style={{ fontSize: "55px" }}>
-                {weather.temperature}°
-              </h1>
-              {weather.condition
-                .toLowerCase()
-                .includes("snow".toLowerCase()) ? (
-                <WiSnow className="text-info" style={{ fontSize: "100px" }} />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("fog".toLowerCase()) ? (
-                <WiFog
-                  className="text-secondary"
-                  style={{ fontSize: "100px" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("rain".toLowerCase()) ? (
-                <WiRain
-                  className="text-primary"
-                  style={{ fontSize: "100px" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("clear".toLowerCase()) ? (
-                <WiDaySunny
-                  style={{ fontSize: "100px", color: "rgb(255, 212, 102)" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("cloud".toLowerCase()) ? (
-                <WiCloud
-                  className="text-secondary"
-                  style={{ fontSize: "100px" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("thunderstorm".toLowerCase()) ? (
-                <WiThunderstorm
-                  className="text-black"
-                  style={{ fontSize: "100px" }}
-                />
-              ) : "" ||
-                weather.condition
-                  .toLowerCase()
-                  .includes("haze".toLowerCase()) ? (
-                <WiDayHaze
-                  className="text-secondary"
-                  style={{ fontSize: "100px" }}
-                />
-              ) : (
-                ""
-              )}
-
-              <Card.Body className="border-bottom border-white w-75 text-center text-white fw-bold">
-                <Card.Text>{weather.condition}</Card.Text>
-              </Card.Body>
-              <Card.Body className="w-75 text-center text-white">
-                <Row>
-                  <Col>
-                    <span>
-                      Max
-                      <WiThermometer className="fs-3" />
-                      {weather.maxTemperature}°
-                    </span>
-                  </Col>
-                  <Col>
-                    <span>
-                      Min <WiThermometer className="fs-3" />
-                      {weather.minTemperature}°
-                    </span>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                <div className="text-center">
+                  <h3 className="fw-bold text-white">{weather.city}</h3>
+                  <p className="text-muted">{`${day} | ${month} | ${year}`}</p>
+                  <h1 className="fw-bold text-white display-4">{weather.temperature}°</h1>
+                </div>
+                <div className="text-center">
+                  {(() => {
+                    switch (weather.condition.toLowerCase()) {
+                      case "snow": return <WiSnow className="text-info" style={{ fontSize: "100px" }} />;
+                      case "fog": return <WiFog className="text-secondary" style={{ fontSize: "100px" }} />;
+                      case "rain": return <WiRain className="text-primary" style={{ fontSize: "100px" }} />;
+                      case "clear": return <WiDaySunny style={{ fontSize: "100px", color: "rgb(255, 212, 102)" }} />;
+                      case "cloud": return <WiCloud className="text-secondary" style={{ fontSize: "100px" }} />;
+                      case "thunderstorm": return <WiThunderstorm className="text-black" style={{ fontSize: "100px" }} />;
+                      case "haze": return <WiDayHaze className="text-secondary" style={{ fontSize: "100px" }} />;
+                      default: return null;
+                    }
+                  })()}
+                </div>
+                <Card.Body className="border-bottom border-white w-75 text-center text-white fw-bold">
+                  <Card.Text>{weather.condition}</Card.Text>
+                </Card.Body>
+                <Card.Body className="w-75 text-center text-white">
+                  <Row>
+                    <Col>
+                      <span>
+                        Max <WiThermometer className="fs-3" /> {weather.maxTemperature}°
+                      </span>
+                    </Col>
+                    <Col>
+                      <span>
+                        Min <WiThermometer className="fs-3" /> {weather.minTemperature}°
+                      </span>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
 
       {/* container forcast per previsioni */}
 
-      <Container fluid className="mt-4">
-        <Row className="d-flex justify-content-center">
-          <Col xs={10} md={7} className="d-flex justify-content-center ">
-            <ForecastWeather city={location.search} />
-          </Col>
-          <Col
-            xs={10}
-            md={4}
-            className="d-flex justify-content-center align-items-center px-2 mt-4 pt-3"
-            style={{ border: "1px solid #fd7486", borderRadius: "20px" }}
-          >
-            <Row>
-              <Col>
-                <div className="d-flex">
-                  <Water
-                    className="fs-5 fw-bold"
-                    style={{ color: "#fd7486" }}
-                  />
-                  <p className="d-flex flex-column ms-3">
-                    Humidity
-                    <span className="fw-bold">{weather.humidity}%</span>
-                  </p>
-                </div>
-                <div className="d-flex">
-                  <Wind className="fs-3 fw-bold" style={{ color: "#fd7486" }} />
-                  <p className="d-flex flex-column ms-3">
-                    Wind
-                    <span className="fw-bold">
-                      {Math.trunc(weather.wind)} km/h
-                    </span>
-                  </p>
-                </div>
-              </Col>
-              <Col>
-                <div className="d-flex">
-                  <WiSunrise
-                    className="fs-3 fw-bold"
-                    style={{ color: "#fd7486" }}
-                  />
-                  <p className="d-flex flex-column ms-3">
-                    Sunrise
-                    <span className="fw-bold">{`${hour1}:${min1}`}</span>
-                  </p>
-                </div>
-                <div className="d-flex">
-                  <WiSunset
-                    className="fs-3 fw-bold"
-                    style={{ color: "#fd7486" }}
-                  />
-                  <p className="d-flex flex-column ms-3">
-                    Sunset
-                    <span className="fw-bold">{`${hour}:${min}`}</span>
-                  </p>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+      <Container fluid className="mt-5">
+      <Row className="justify-content-center">
+        <Col xs={12} md={7} className="d-flex justify-content-center">
+          <ForecastWeather city={location.search} />
+        </Col>
+
+        <Col xs={12} md={4} className="d-flex justify-content-center align-items-center p-2 mt-4" style={{ border: "1px solid #fd7486", borderRadius: "20px" }}>
+          <WeatherDetail icon={<Water className="fs-5 fw-bold" style={{ color: "#fd7486" }} />} label="Humidity" value={`${weather.humidity}%`} />
+          <WeatherDetail icon={<Wind className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Wind" value={`${Math.trunc(weather.wind)} km/h`} />
+          <WeatherDetail icon={<WiSunrise className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Sunrise" value={`${hour1}:${min1}`} />
+          <WeatherDetail icon={<WiSunset className="fs-3 fw-bold" style={{ color: "#fd7486" }} />} label="Sunset" value={`${hour}:${min}`} />
+        </Col>
+      </Row>
+    </Container>
     </>
   )
 }
