@@ -57,7 +57,7 @@ const SearchLocation = () => {
               }}
               style={{ border: "1px solid #fd7486", borderRadius: "0" }}
               aria-label="Search city..."
-              placeholder="Search here city!"
+              placeholder="Search here the city!"
             />
           </InputGroup>
 

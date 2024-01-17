@@ -36,7 +36,7 @@ const MyNav = () => {
             </Link>
           </Nav>
 
-          {/* Include the SearchLocation component */}
+          
           <SearchLocation />
         </Navbar.Collapse>
       </Navbar>

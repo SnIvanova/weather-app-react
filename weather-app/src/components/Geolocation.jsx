@@ -26,6 +26,19 @@ const Geolocation = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
+/*   const getWeatherIcon = () => {
+    const condition = weather.weather[0].main.toLowerCase();
+
+    if (condition.includes("snow")) return <WiSnow className="text-info" style={{ fontSize: "100px" }} />;
+    if (condition.includes("fog")) return <WiFog className="text-secondary" style={{ fontSize: "100px" }} />;
+    if (condition.includes("rain")) return <WiRain className="text-primary" style={{ fontSize: "100px" }} />;
+    if (condition.includes("thunderstorm")) return <WiThunderstorm className="text-black" style={{ fontSize: "100px" }} />;
+    if (condition.includes("clear")) return <WiDaySunny style={{ fontSize: "100px", color: "rgb(255, 212, 102)" }} />;
+    if (condition.includes("cloud")) return <WiCloud className="text-secondary" style={{ fontSize: "100px" }} />;
+    if (condition.includes("haze")) return <WiDayHaze className="text-secondary" style={{ fontSize: "100px" }} />;
+    return null;
+  }; */
+
   const handleLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error)
@@ -40,7 +53,7 @@ const Geolocation = () => {
     setLocation({ latitude, longitude })
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`)
 
-    // Make API call to OpenWeatherMap
+    
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=1222bad9d1d8ef63b964aa245050cd2a&units=metric`
     )
@@ -95,7 +108,7 @@ const Geolocation = () => {
       {weather ? (
         <Container fluid className="mt-5">
           <Row className="d-flex justify-content-center flex-column align-items-center">
-            <Col xs={12}>
+            <Col xs={12} md={7}>
               <Card
                 className="d-flex justify-content-center align-items-center p-3 border-white rounded-2"
                 style={{ zIndex: "100" }}
