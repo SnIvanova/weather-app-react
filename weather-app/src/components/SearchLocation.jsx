@@ -75,7 +75,7 @@ const SearchLocation = () => {
                        justify-content-between link text-black"
                   style={{ textDecoration: "none" }
                   }
-                  
+                  onClick={() => window.location.href = `/weather?lat=${city.lat}&lon=${city.lon}`}
                 >
                   <div className="ps-2 w-100">
                     <span>{searchValue ? city.name : ""}</span>
